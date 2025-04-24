@@ -21,6 +21,8 @@ USER root
 RUN set -ex; \
     apt-get update; \
     apt-get install -y python3 python3-pip; \
-    rm -rf /var/lib/apt/lists/*
+    pip3 install jupyter findspark; \
+    mkdir -p /home/spark/.local/share/jupyter/runtime; \
+    chown -R spark:spark /home/spark
 
 USER spark

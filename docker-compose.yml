@@ -6,6 +6,8 @@ services:
     volumes:
       - ./:/app
     working_dir: /app
-    command: /opt/spark/bin/spark-submit main.py
+    ports:
+      - "8888:8888"  # Expose Jupyter port
+    command: jupyter notebook --ip=0.0.0.0 --no-browser --allow-root --NotebookApp.token=''
     tty: true
     stdin_open: true
