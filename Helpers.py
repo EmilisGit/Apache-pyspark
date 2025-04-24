@@ -6,7 +6,6 @@ class Helpers:
         if not params_to_extract:
             raise ValueError("Error: Specify parameter names to extract.")
         
-        # Extract entries like {{...}} from the line
         entries = re.findall(r'\{\{.*?\}\}', line)
         
         for entry in entries:
@@ -22,7 +21,7 @@ class Helpers:
                     try:
                         value = float(value)
                     except ValueError:
-                        pass  # Leave as string if not a float
+                        pass
                     filtered_dict[var] = value
 
                 yield filtered_dict
