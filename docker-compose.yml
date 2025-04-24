@@ -5,6 +5,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./:/app
-    command: /opt/spark/bin/spark-submit /app/main.py
+    working_dir: /app
+    command: /opt/spark/bin/spark-submit main.py
     tty: true
     stdin_open: true

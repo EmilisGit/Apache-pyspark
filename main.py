@@ -1,7 +1,11 @@
 from pyspark.sql import SparkSession
 
-spark = SparkSession.builder.appName("LocalApp").master("local[*]").getOrCreate()
+spark = SparkSession.builder.appName("Lab2").master("local[*]").getOrCreate()
+sc = spark.sparkContext
 
-data = [("Alice", 25), ("Bob", 30), ("Eve", 22)]
-df = spark.createDataFrame(data, ["Name", "Age"])
-df.show()
+lines = sc.textFile("./data/duom_cut.txt")
+
+lineLengths = lines.map(lambda s: len(s))
+totalLength = lineLengths.reduce(lambda a, b: a + b)
+
+print(f"Total lines: {totalLength}")
